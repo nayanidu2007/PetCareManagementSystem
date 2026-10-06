@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ 
+<jasperReport 
+ name="AppointmentReport" 
+ pageWidth="842" 
+ pageHeight="595" 
+ columnWidth="782" 
+ leftMargin="30" 
+ rightMargin="30" 
+ topMargin="30" 
+ bottomMargin="30"> 
+ 
+ 
+<query language="SQL"><![CDATA[ 
+    SELECT 
+        a.appointment_id, 
+        p.pet_name, 
+        c.full_name AS customer_name, 
+        v.full_name AS veterinarian_name, 
+        a.appointment_date, 
+        a.appointment_time, 
+        a.reason, 
+        a.status 
+    FROM appointments a 
+    INNER JOIN pets p 
+        ON a.pet_id = p.pet_id 
+    INNER JOIN customers c 
+        ON p.customer_id = c.customer_id 
+    INNER JOIN veterinarians v 
+        ON a.veterinarian_id = v.veterinarian_id 
+    ORDER BY 
+        a.appointment_date, 
+        a.appointment_time 
+]]></query> 
+ 
+<field 
+    name="appointment_id" 
+    class="java.lang.Integer"/> 
+ 
+<field 
+    name="pet_name" 
+    class="java.lang.String"/> 
+ 
+<field 
+    name="customer_name" 
+    class="java.lang.String"/> 
+ 
+<field 
+    name="veterinarian_name" 
+    class="java.lang.String"/> 
+ 
+<field 
+    name="appointment_date" 
+    class="java.sql.Date"/> 
+ 
+<field 
+    name="appointment_time" 
+    class="java.sql.Time"/> 
+ 
+<field 
+    name="reason" 
+    class="java.lang.String"/> 
+ 
+<field 
+    name="status" 
+    class="java.lang.String"/> 
+ 
+<title height="70"> 
+ 
+    <element 
+        kind="staticText" 
+        x="0" 
+        y="10" 
+        width="782" 
+        height="35" 
+        fontSize="20.0" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[VETERINARY APPOINTMENT REPORT]]></text> 
+ 
+    </element> 
+ 
+</title> 
+ 
+<columnHeader height="35"> 
+ 
+    <element 
+        kind="staticText" 
+        x="0" 
+        y="0" 
+        width="40" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[ID]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="40" 
+        y="0" 
+        width="80" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Pet]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="120" 
+        y="0" 
+        width="120" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Customer]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="240" 
+        y="0" 
+        width="120" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Veterinarian]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="360" 
+        y="0" 
+        width="80" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Date]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="440" 
+        y="0" 
+        width="70" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Time]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="510" 
+        y="0" 
+        width="150" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Reason]]></text> 
+ 
+    </element> 
+ 
+    <element 
+        kind="staticText" 
+        x="660" 
+        y="0" 
+        width="122" 
+        height="30" 
+        bold="true" 
+        hTextAlign="Center"> 
+ 
+        <text><![CDATA[Status]]></text> 
+ 
+    </element> 
+ 
+</columnHeader> 
+ 
+<detail> 
+ 
+    <band height="30"> 
+ 
+        <element 
+            kind="textField" 
+            x="0" 
+            y="0" 
+            width="40" 
+            height="25" 
+            hTextAlign="Center"> 
+ 
+            <expression><![CDATA[$F{appointment_id}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="40" 
+            y="0" 
+            width="80" 
+            height="25"> 
+ 
+            <expression><![CDATA[$F{pet_name}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="120" 
+            y="0" 
+            width="120" 
+            height="25"> 
+ 
+            <expression><![CDATA[$F{customer_name}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="240" 
+            y="0" 
+            width="120" 
+            height="25"> 
+ 
+            <expression><![CDATA[$F{veterinarian_name}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="360" 
+            y="0" 
+            width="80" 
+            height="25" 
+            hTextAlign="Center"> 
+ 
+            <expression><![CDATA[$F{appointment_date}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="440" 
+            y="0" 
+            width="70" 
+            height="25" 
+            hTextAlign="Center"> 
+ 
+            <expression><![CDATA[$F{appointment_time}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="510" 
+            y="0" 
+            width="150" 
+            height="25"> 
+ 
+            <expression><![CDATA[$F{reason}]]></expression> 
+ 
+        </element> 
+ 
+        <element 
+            kind="textField" 
+            x="660" 
+            y="0" 
+            width="122" 
+            height="25" 
+            hTextAlign="Center"> 
+ 
+            <expression><![CDATA[$F{status}]]></expression> 
+ 
+        </element> 
+ 
+    </band> 
+ 
+</detail> 
+ 
+<pageFooter height="30"> 
+ 
+    <element 
+        kind="textField" 
+        x="650" 
+        y="5" 
+        width="132" 
+        height="20" 
+        hTextAlign="Right"> 
+ 
+        <expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression> 
+ 
+    </element> 
+ 
+</pageFooter> 
+ 
+ 
+</jasperReport> 

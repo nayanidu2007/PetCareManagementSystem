@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport
+ name="TreatmentReport"
+ pageWidth="842"
+ pageHeight="595"
+ columnWidth="782"
+ leftMargin="30"
+ rightMargin="30"
+ topMargin="30"
+ bottomMargin="30">
+
+<query language="SQL"><![CDATA[
+    SELECT
+        t.treatment_id,
+        p.pet_name,
+        c.full_name AS customer_name,
+        v.full_name AS veterinarian_name,
+        t.diagnosis,
+        t.treatment_description,
+        t.medication,
+        t.treatment_date,
+        t.cost
+    FROM treatments t
+    INNER JOIN appointments a
+        ON t.appointment_id = a.appointment_id
+    INNER JOIN pets p
+        ON a.pet_id = p.pet_id
+    INNER JOIN customers c
+        ON p.customer_id = c.customer_id
+    INNER JOIN veterinarians v
+        ON a.veterinarian_id = v.veterinarian_id
+    ORDER BY
+        t.treatment_date,
+        t.treatment_id
+]]></query>
+
+<field
+    name="treatment_id"
+    class="java.lang.Integer"/>
+
+<field
+    name="pet_name"
+    class="java.lang.String"/>
+
+<field
+    name="customer_name"
+    class="java.lang.String"/>
+
+<field
+    name="veterinarian_name"
+    class="java.lang.String"/>
+
+<field
+    name="diagnosis"
+    class="java.lang.String"/>
+
+<field
+    name="treatment_description"
+    class="java.lang.String"/>
+
+<field
+    name="medication"
+    class="java.lang.String"/>
+
+<field
+    name="treatment_date"
+    class="java.sql.Date"/>
+
+<field
+    name="cost"
+    class="java.math.BigDecimal"/>
+
+<title height="70">
+
+    <element
+        kind="staticText"
+        x="0"
+        y="10"
+        width="782"
+        height="35"
+        fontSize="20.0"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[VETERINARY TREATMENT REPORT]]></text>
+
+    </element>
+
+</title>
+
+<columnHeader height="35">
+
+    <element
+        kind="staticText"
+        x="0"
+        y="0"
+        width="40"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[ID]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="40"
+        y="0"
+        width="80"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Pet]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="120"
+        y="0"
+        width="110"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Customer]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="230"
+        y="0"
+        width="110"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Veterinarian]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="340"
+        y="0"
+        width="100"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Diagnosis]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="440"
+        y="0"
+        width="130"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Treatment]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="570"
+        y="0"
+        width="100"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Medication]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="670"
+        y="0"
+        width="70"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Date]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="740"
+        y="0"
+        width="42"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Cost]]></text>
+
+    </element>
+
+</columnHeader>
+
+<detail>
+
+    <band height="30">
+
+        <element
+            kind="textField"
+            x="0"
+            y="0"
+            width="40"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{treatment_id}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="40"
+            y="0"
+            width="80"
+            height="25">
+
+            <expression><![CDATA[$F{pet_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="120"
+            y="0"
+            width="110"
+            height="25">
+
+            <expression><![CDATA[$F{customer_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="230"
+            y="0"
+            width="110"
+            height="25">
+
+            <expression><![CDATA[$F{veterinarian_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="340"
+            y="0"
+            width="100"
+            height="25">
+
+            <expression><![CDATA[$F{diagnosis}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="440"
+            y="0"
+            width="130"
+            height="25">
+
+            <expression><![CDATA[$F{treatment_description}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="570"
+            y="0"
+            width="100"
+            height="25">
+
+            <expression><![CDATA[$F{medication}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="670"
+            y="0"
+            width="70"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{treatment_date}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="740"
+            y="0"
+            width="42"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{cost}]]></expression>
+
+        </element>
+
+    </band>
+
+</detail>
+
+<pageFooter height="30">
+
+    <element
+        kind="textField"
+        x="650"
+        y="5"
+        width="132"
+        height="20"
+        hTextAlign="Right">
+
+        <expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+
+    </element>
+
+</pageFooter>
+
+</jasperReport>

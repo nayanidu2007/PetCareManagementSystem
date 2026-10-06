@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport
+ name="BillReport"
+ pageWidth="842"
+ pageHeight="595"
+ columnWidth="782"
+ leftMargin="30"
+ rightMargin="30"
+ topMargin="30"
+ bottomMargin="30">
+
+<query language="SQL"><![CDATA[
+    SELECT
+        b.bill_id,
+        p.pet_name,
+        c.full_name AS customer_name,
+        v.full_name AS veterinarian_name,
+        b.bill_date,
+        b.total_amount,
+        b.payment_method,
+        b.payment_status
+    FROM bills b
+    INNER JOIN appointments a
+        ON b.appointment_id = a.appointment_id
+    INNER JOIN pets p
+        ON a.pet_id = p.pet_id
+    INNER JOIN customers c
+        ON p.customer_id = c.customer_id
+    INNER JOIN veterinarians v
+        ON a.veterinarian_id = v.veterinarian_id
+    ORDER BY
+        b.bill_date,
+        b.bill_id
+]]></query>
+
+<field
+    name="bill_id"
+    class="java.lang.Integer"/>
+
+<field
+    name="pet_name"
+    class="java.lang.String"/>
+
+<field
+    name="customer_name"
+    class="java.lang.String"/>
+
+<field
+    name="veterinarian_name"
+    class="java.lang.String"/>
+
+<field
+    name="bill_date"
+    class="java.sql.Date"/>
+
+<field
+    name="total_amount"
+    class="java.math.BigDecimal"/>
+
+<field
+    name="payment_method"
+    class="java.lang.String"/>
+
+<field
+    name="payment_status"
+    class="java.lang.String"/>
+
+<title height="70">
+
+    <element
+        kind="staticText"
+        x="0"
+        y="10"
+        width="782"
+        height="35"
+        fontSize="20.0"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[VETERINARY BILL REPORT]]></text>
+
+    </element>
+
+</title>
+
+<columnHeader height="35">
+
+    <element
+        kind="staticText"
+        x="0"
+        y="0"
+        width="45"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[ID]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="45"
+        y="0"
+        width="85"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Pet]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="130"
+        y="0"
+        width="120"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Customer]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="250"
+        y="0"
+        width="120"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Veterinarian]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="370"
+        y="0"
+        width="85"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Date]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="455"
+        y="0"
+        width="90"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Amount]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="545"
+        y="0"
+        width="115"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Payment Method]]></text>
+
+    </element>
+
+    <element
+        kind="staticText"
+        x="660"
+        y="0"
+        width="122"
+        height="30"
+        bold="true"
+        hTextAlign="Center">
+
+        <text><![CDATA[Status]]></text>
+
+    </element>
+
+</columnHeader>
+
+<detail>
+
+    <band height="30">
+
+        <element
+            kind="textField"
+            x="0"
+            y="0"
+            width="45"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{bill_id}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="45"
+            y="0"
+            width="85"
+            height="25">
+
+            <expression><![CDATA[$F{pet_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="130"
+            y="0"
+            width="120"
+            height="25">
+
+            <expression><![CDATA[$F{customer_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="250"
+            y="0"
+            width="120"
+            height="25">
+
+            <expression><![CDATA[$F{veterinarian_name}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="370"
+            y="0"
+            width="85"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{bill_date}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="455"
+            y="0"
+            width="90"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{total_amount}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="545"
+            y="0"
+            width="115"
+            height="25">
+
+            <expression><![CDATA[$F{payment_method}]]></expression>
+
+        </element>
+
+        <element
+            kind="textField"
+            x="660"
+            y="0"
+            width="122"
+            height="25"
+            hTextAlign="Center">
+
+            <expression><![CDATA[$F{payment_status}]]></expression>
+
+        </element>
+
+    </band>
+
+</detail>
+
+<pageFooter height="30">
+
+    <element
+        kind="textField"
+        x="650"
+        y="5"
+        width="132"
+        height="20"
+        hTextAlign="Right">
+
+        <expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+
+    </element>
+
+</pageFooter>
+
+</jasperReport>
